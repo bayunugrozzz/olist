@@ -1,0 +1,35 @@
+version: 2
+
+models:
+  - name: fact_sales
+    description: "Tabel fakta penjualan granular (1 baris per order item) terhubung dengan dim_customers, dim_products, dan dim_sellers."
+    columns:
+      - name: sales_item_key
+        description: "Surrogate primary key untuk setiap item transaksi."
+        data_tests:
+          - unique
+          - not_null
+      - name: customer_key
+        data_tests:
+          - not_null
+      - name: product_key
+        data_tests:
+          - not_null
+      - name: seller_key
+        data_tests:
+          - not_null
+      
+  - name: fact_payments
+    description: "Tabel fakta pembayaran pesanan (1 baris per metode/urutan pembayaran)."
+    columns:
+      - name: payment_key
+        description: "Surrogate primary key untuk setiap transaksi pembayaran."
+        data_tests:
+          - unique
+          - not_null
+      - name: order_id
+        data_tests:
+          - not_null
+      - name: customer_key
+        data_tests:
+          - not_null

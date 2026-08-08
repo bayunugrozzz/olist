@@ -1,0 +1,21 @@
+# Ignore everything
+*
+
+# Allow .gitignore itself
+!.gitignore
+
+# Allow dags
+!dags/
+!dags/**
+
+# Allow required files
+!dbt-requirements.txt
+!docker-compose.yml
+!Dockerfile
+!requirements.txt
+!start.sh
+
+# Python cache
+__pycache__/
+**/__pycache__/
+*.py[cod]

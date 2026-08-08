@@ -1,0 +1,14 @@
+pandas
+polars
+connectorx
+pyarrow
+pendulum
+minio
+apache-airflow-providers-postgres
+apache-airflow-providers-amazon
+apache-airflow-providers-slack
+apache-airflow-providers-google
+pangres
+astronomer-cosmos
+gspread
+requests

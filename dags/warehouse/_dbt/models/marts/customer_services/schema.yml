@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: fact_reviews
+    description: "Tabel fakta ulasan dan kepuasan pelanggan per transaksi pesanan."
+    columns:
+      - name: review_key
+        description: "Primary key / Surrogate key ulasan."
+        data_tests:
+          - unique
+          - not_null
+      - name: review_id
+        data_tests:
+          - not_null
+      - name: order_id
+        data_tests:
+          - not_null
+      - name: customer_key
+        data_tests:
+          - not_null

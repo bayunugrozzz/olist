@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: fact_marketing_funnel
+    description: "Tabel fakta akuisisi penjual dan performa konversi funnel pemasaran (MQL ke Closed Deal)."
+    columns:
+      - name: funnel_key
+        description: "Primary key / Surrogate key fakta funnel."
+        data_tests:
+          - unique
+          - not_null
+      - name: mql_key
+        data_tests:
+          - not_null
+      - name: mql_id
+        data_tests:
+          - unique
+          - not_null

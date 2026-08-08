@@ -1,0 +1,123 @@
+version: 2
+
+sources:
+  - name: staging
+    schema: staging
+    description: "Data mentah e-commerce Olist yang sudah melewati tahap staging dasar."
+    
+    tables:
+      - name: orders
+        description: "Tabel utama transaksi pemesanan."
+        columns:
+          - name: order_id
+            description: "Primary key untuk pesanan."
+            data_tests:
+              - unique
+              - not_null
+          - name: customer_id
+            description: "Foreign key yang menghubungkan ke data pelanggan per transaksi."
+            data_tests:
+              - not_null
+
+      - name: order_items
+        description: "Detail item barang yang dibeli dalam satu pesanan."
+        columns:
+          - name: order_id
+            description: "Foreign key ke tabel orders."
+            data_tests:
+              - not_null
+          - name: order_item_id
+            description: "Nomor urut item dalam satu order."
+            data_tests:
+              - not_null
+          - name: product_id
+            description: "Foreign key ke tabel products."
+            data_tests:
+              - not_null
+          - name: seller_id
+            description: "Foreign key ke tabel sellers."
+            data_tests:
+              - not_null
+
+      - name: order_payments
+        description: "Informasi metode dan nilai pembayaran transaksi."
+        columns:
+          - name: order_id
+            description: "Foreign key ke tabel orders."
+            data_tests:
+              - not_null
+          - name: payment_sequential
+            description: "Urutan metode pembayaran jika menggunakan lebih dari satu metode."
+            data_tests:
+              - not_null
+
+      - name: order_reviews
+        description: "Data ulasan dan rating yang diberikan oleh pelanggan."
+        columns:
+          - name: review_id
+            description: "Primary key ulasan."
+            data_tests:
+              - not_null
+          - name: order_id
+            description: "Foreign key ke tabel orders."
+            data_tests:
+              - not_null
+
+      - name: customers
+        description: "Data lokasi dan entitas pembeli."
+        columns:
+          - name: customer_id
+            description: "Primary key transaksi pelanggan."
+            data_tests:
+              - unique
+              - not_null
+          - name: customer_unique_id
+            description: "ID unik pelanggan jangka panjang."
+            data_tests:
+              - not_null
+
+      - name: products
+        description: "Data kualitatif dan fisik produk."
+        columns:
+          - name: product_id
+            description: "Primary key produk."
+            data_tests:
+              - unique
+              - not_null
+
+      - name: sellers
+        description: "Data profil dan lokasi penjual/mitra."
+        columns:
+          - name: seller_id
+            description: "Primary key penjual."
+            data_tests:
+              - unique
+              - not_null
+
+      - name: product_category_name
+        identifier: product_category_name_translation  
+        description: "Tabel pemetaan/penerjemahan kategori produk dari Portugis ke Inggris."
+        columns:
+          - name: product_category_name
+            description: "Nama kategori dalam bahasa Portugis."
+            data_tests:
+              - unique
+              - not_null
+
+      - name: marketing_qualified_leads
+        description: "Data kontak awal prospek (MQL) dari saluran pemasaran."
+        columns:
+          - name: mql_id
+            description: "Primary key prospek pemasaran."
+            data_tests:
+              - unique
+              - not_null
+
+      - name: closed_deals
+        description: "Data transaksi kesepakatan penjualan dengan seller yang berhasil didapatkan."
+        columns:
+          - name: mql_id
+            description: "Foreign key / Primary key dari data MQL."
+            data_tests:
+              - unique
+              - not_null
