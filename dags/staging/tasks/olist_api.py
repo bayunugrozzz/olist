@@ -10,7 +10,6 @@ def olist_api():
     Task group for Olist API (Payments & Reviews) Extract and Load process.
     """
 
-    # --- 1. Order Payments Pipeline ---
     extract_payments = PythonOperator(
         task_id='extract_order_payments',
         python_callable=Extract._olist_api_payments,
@@ -25,7 +24,6 @@ def olist_api():
 
     extract_payments >> load_payments
 
-    # --- 2. Order Reviews Pipeline ---
     extract_reviews = PythonOperator(
         task_id='extract_order_reviews',
         python_callable=Extract._olist_api_reviews,

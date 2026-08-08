@@ -12,7 +12,6 @@ def olist_db():
         table_pkeys = json.loads(Variable.get('pkey_olist_table', default_var='{}'))
         
         # Mapping kolom timestamp untuk tiap tabel (Misal: order_purchase_timestamp, updated_at, dll)
-        # BISA DILETAKKAAN DI AIRFLOW VARIABLE JUGA: Variable.get('watermark_olist_table')
         watermark_cols = json.loads(Variable.get('watermark_olist_table', default_var='{}'))
         
         # Ambil status incremental mode (True/False)
@@ -35,7 +34,7 @@ def olist_db():
                 op_kwargs={
                     "table_name": table_name,
                     "incremental": incremental,
-                    "watermark_col": watermark_col,  # Pass kolom watermark
+                    "watermark_col": watermark_col, 
                     "ds": "{{ ds }}"
                 },
                 trigger_rule='none_failed'

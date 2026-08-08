@@ -78,7 +78,6 @@ class CustomMinio:
   @staticmethod
   def _put_csv(df: pd.DataFrame, bucket_name: str, object_name: str):
     """Upload Pandas DataFrame sebagai file CSV ke MinIO."""
-    # DIPERBAIKI: Menggunakan MinioClient._get() bukannya CustomMinio._get_client()
     minio_client = MinioClient._get()
     CustomMinio._ensure_bucket_exists(minio_client, bucket_name)
 

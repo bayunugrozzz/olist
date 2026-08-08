@@ -193,11 +193,10 @@ class Load:
 
   @staticmethod
   def _olist_api_payments(date):
-    # Pemanggilan ini yang tadi bikin error karena _load_supabase_json hilang
     Load._load_supabase_json(
         object_prefix='order_payments',
         table_name='order_payments',
-        table_pkey=['order_id', 'payment_sequential'],  # atau PK yang sesuai
+        table_pkey=['order_id', 'payment_sequential'],  
         date=date,
     )
 
@@ -212,15 +211,14 @@ class Load:
 
   @staticmethod
   def _olist_api_reviews(ds):
-      # FIX 4: Kirim pkey berupa list 2 kolom agar cocok dengan Primary Key DB
       Load._load_supabase_json(
           'order_reviews', 'order_reviews', ['review_id', 'order_id'], ds
       )
   @staticmethod
-  def _olist_spreadsheet(ds):  # Tambahkan parameter ds
+  def _olist_spreadsheet(ds): 
     bucket_name = 'extracted-data'
 
-    # PERBAIKAN: Samakan path dan nama file dengan yang dibuat oleh Extract
+  
     execution_date = (pd.to_datetime(ds) - timedelta(days=1)).strftime('%Y-%m-%d')
     object_name = f'olist-spreadsheet/product_category/data-{ds}.csv'
 

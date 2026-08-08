@@ -63,8 +63,7 @@ class Extract:
       api_url = Variable.get(api_url_var)
       api_key = Variable.get('supabase_api_key').strip().strip('"\'')
 
-      # DIESUAIKAN UNTUK CARA 2:
-      # Cukup gunakan 'apikey', HAPUS 'Authorization: Bearer ...'
+    
       headers = {
           'apikey': api_key,
           'Accept': 'application/json',

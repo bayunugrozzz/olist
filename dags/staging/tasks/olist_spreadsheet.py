@@ -11,14 +11,14 @@ def olist_spreadsheet():
   extract_task = PythonOperator(
       task_id='extract',
       python_callable=Extract._olist_spreadsheet,
-      op_kwargs={'ds': '{{ ds }}'},  # Pass ds jika Extract butuh {{ ds }}
+      op_kwargs={'ds': '{{ ds }}'},
       trigger_rule='none_failed',
   )
 
   load_task = PythonOperator(
       task_id='load',
       python_callable=Load._olist_spreadsheet,
-      op_kwargs={'ds': '{{ ds }}'},  # PERBAIKAN: Kirim {{ ds }} ke Load
+      op_kwargs={'ds': '{{ ds }}'},  
       trigger_rule='none_failed',
   )
 
